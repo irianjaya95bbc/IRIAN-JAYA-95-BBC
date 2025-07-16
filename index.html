@@ -15,44 +15,18 @@
       font-family: 'Orbitron', sans-serif;
       background: #000;
       color: #fff;
+      background-image: url('latar-belakang.jpg');
       background-size: cover;
       background-attachment: fixed;
     }
 
-    header {
-      background: rgba(0,0,0,0.7);
-      padding: 20px;
-      text-align: center;
-    }
-
-    .logo-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .logo-title img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: white;
-      padding: 5px;
-    }
-
-    .logo-title h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 40px;
-      margin: 0;
-    }
+    header { background: rgba(0,0,0,0.7); padding: 20px; text-align: center; }
+    .logo-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
+    .logo-title img { width: 80px; height: 80px; border-radius: 50%; background: white; padding: 5px; }
+    .logo-title h1 { font-family: 'Orbitron', sans-serif; font-size: 40px; margin: 0; }
 
     nav { margin-top: 10px; }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 20px;
-      font-weight: bold;
-    }
+    nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
 
     section {
@@ -65,28 +39,80 @@
     h2 { font-size: 32px; margin-bottom: 20px; }
     p { font-family: 'Poppins', sans-serif; font-size: 18px; }
 
-    .btn {
-      display: inline-block;
-      background: #00ffcc;
-      color: #000;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: 0.3s;
-      margin: 10px;
+    .anggota-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
 
-    .btn:hover { background: #00cca9; }
-
-    .form-absen {
-      display: none;
-      margin-top: 30px;
+    .card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    iframe {
+    .card img {
       width: 100%;
-      height: 600px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(255,255,255,0.3);
+    }
+
+    .posisi { font-family: 'Poppins', sans-serif; font-size: 14px; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Anggota & Absen awalnya hidden */
+    #absen, #anggota {
+      display: none;
+    }
+
+    /* Tampilkan kalau #target */
+    :target#absen, :target#anggota {
+      display: block;
+    }
+
+    .absen-frame {
+      width: 90%;
+      max-width: 700px;
+      height: 550px;
+      margin: 40px auto 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
+      background: #fff;
+    }
+
+    iframe { width: 100%; height: 100%; border: none; }
+
+    .youtube-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      background: #ff0000;
       border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .youtube-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,0,0,0.7);
+      background: #e60000;
     }
   </style>
 </head>
@@ -100,19 +126,19 @@
     <nav>
       <a href="#beranda">Beranda</a>
       <a href="#tentang">Tentang</a>
+      <a href="#anggota">Anggota</a>
       <a href="#kontak">Kontak</a>
+      <a href="#absen">Absen</a>
     </nav>
   </header>
 
   <section id="beranda">
     <h2>Beranda</h2>
     <p>Selamat datang di situs resmi Irian Jaya 95 BBC! Kami adalah komunitas musik dari Papua.</p>
-    <a href="#" class="btn" onclick="showAbsen()">Absen Rekaman</a>
-    <a href="https://www.youtube.com/results?search_query=irian+jaya+95+bbc" target="_blank" class="btn">Channel YouTube</a>
-
-    <div class="form-absen" id="formAbsen">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfLy8obcO4eeCOKiCWG3J5v7MEZsLDgWw2Dn8bDBqiA_6CxA/viewform?embedded=true">Loading…</iframe>
-    </div>
+    <!-- Tombol Youtube -->
+    <a class="youtube-button" href="https://www.youtube.com/results?search_query=irian+jaya+95" target="_blank">
+      Kunjungi YouTube Kami
+    </a>
   </section>
 
   <section id="tentang">
@@ -120,19 +146,31 @@
     <p>Irian Jaya 95 BBC adalah grup musik dengan semangat hip-hop dan pesan damai dari Tanah Papua.</p>
   </section>
 
-  <section id="kontak">
-    <h2>Kontak</h2>
-    <p>Follow Youtube:
-      <a href="https://www.youtube.com/@irianjaya95bbc" target="_blank">IRIAN JAYA 95 BBC</a>
-    </p>
-    <p>Instagram: @irianjaya95bbc</p>
+  <section id="anggota">
+    <h2>Struktur & Anggota Kami</h2>
+    <div class="anggota-container">
+      <!-- Anggota -->
+      <!-- Sama seperti sebelumnya -->
+    </div>
   </section>
 
-  <script>
-    function showAbsen() {
-      document.getElementById('formAbsen').style.display = 'block';
-    }
-  </script>
+  <section id="absen">
+    <h2>Absen Rekaman</h2>
+    <p>Silahkan isi absen jika hadir rekaman agar keaktifan tercatat dengan baik.</p>
+    <div class="absen-frame">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdfLy8obcO4eeCOKiCW9GJ5v7MEZsLDGww2Dn8bDBqiA_6CxA/viewform?embedded=true"></iframe>
+    </div>
+  </section>
+
+  <section id="kontak">
+    <h2>Kontak</h2>
+    <p>Follow Youtube: <a href="https://www.youtube.com/results?search_query=irian+jaya+95" target="_blank">IRIAN JAYA 95 BBC</a></p>
+    <p>Instagram: @irianjaya95bbc</p>
+    <audio controls autoplay loop>
+      <source src="lagu1.mp3" type="audio/mpeg">
+      Browser Anda tidak mendukung pemutar audio.
+    </audio>
+  </section>
 
 </body>
 </html>
